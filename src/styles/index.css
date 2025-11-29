@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  
+  body {
+    @apply bg-background text-zinc-400 font-sans h-screen w-screen overflow-hidden;
+  }
+
+  ::selection {
+    @apply bg-primary text-white;
+  }
+
+  /* Overlay window transparent background */
+  body.overlay-window,
+  html.overlay-window,
+  html.overlay-window body {
+    background: transparent !important;
+    overflow: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { 
+  width: 6px; 
+  height: 6px;
+}
+::-webkit-scrollbar-track { 
+  background: transparent; 
+}
+::-webkit-scrollbar-thumb { 
+  background: #27272a; 
+  border-radius: 3px; 
+}
+::-webkit-scrollbar-thumb:hover { 
+  background: #3f3f46; 
+}
+
+/* App Drag Region */
+.app-drag { 
+  -webkit-app-region: drag; 
+}
+.no-drag { 
+  -webkit-app-region: no-drag; 
+}
+
+@layer components {
+  /* Glass Panel Effect */
+  .glass-panel {
+    background: rgba(18, 18, 20, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Shimmer Button */
+  .shimmer-btn {
+    --spread: 90deg;
+    --shimmer-color: #06b6d4;
+    --speed: 3s;
+    @apply relative isolate flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg bg-transparent py-3 text-sm font-semibold uppercase tracking-wide text-white transition-all duration-300;
+    box-shadow: 0 0 20px -5px rgba(6, 182, 212, 0.3);
+  }
+  .shimmer-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.6);
+  }
+  .shimmer-btn:active {
+    transform: scale(0.98);
+  }
+  .shimmer-btn .shimmer-bg {
+    @apply absolute inset-0 -z-10 overflow-hidden rounded-lg;
+  }
+  .shimmer-btn .shimmer-gradient {
+    @apply absolute left-1/2 top-1/2 h-[400%] w-[400%];
+    animation: shimmer-rotate var(--speed) linear infinite;
+  }
+  .shimmer-btn .shimmer-gradient::before {
+    content: '';
+    @apply absolute inset-0;
+    background: conic-gradient(from calc(270deg - (var(--spread) * 0.5)), transparent 0, var(--shimmer-color) var(--spread), transparent var(--spread));
+  }
+  .shimmer-btn .shimmer-inner {
+    @apply absolute inset-[1px] -z-10 rounded-[calc(0.5rem-1px)] bg-surface/90 backdrop-blur-md transition-colors duration-300;
+  }
+  .shimmer-btn:hover .shimmer-inner {
+    @apply bg-zinc-900/80;
+  }
+
+  @keyframes shimmer-rotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  /* Card Hover Glow */
+  .card-glow {
+    @apply relative;
+  }
+  .card-glow::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    background: linear-gradient(45deg, transparent, rgba(6, 182, 212, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+  }
+  .card-glow:hover::after {
+    opacity: 1;
+  }
+
+  /* Navigation Button Active State */
+  .nav-btn {
+    @apply w-10 h-10 rounded-xl flex items-center justify-center text-zinc-500 hover:text-zinc-100 hover:bg-white/5 border border-transparent transition-all;
+  }
+  .nav-btn.active {
+    @apply bg-primary/10 text-primary border-primary/20;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+  }
+
+  /* Champion Card */
+  .champion-card {
+    @apply relative rounded-2xl overflow-hidden border border-white/10 bg-surface cursor-pointer transition-transform duration-300;
+  }
+  .champion-card:hover {
+    @apply -translate-y-2;
+  }
+  .champion-card-main {
+    @apply border-primary/30 shadow-2xl shadow-primary/5;
+  }
+
+  /* Team Slot */
+  .team-slot {
+    @apply flex-1 border-b border-border/50 relative;
+  }
+  .team-slot:last-child {
+    @apply border-b-0;
+  }
+
+  /* Role Button */
+  .role-btn {
+    @apply w-10 h-10 rounded-full flex items-center justify-center text-zinc-500 hover:text-white hover:bg-white/10 transition-all;
+  }
+  .role-btn.active {
+    @apply bg-primary text-white shadow-lg shadow-primary/20;
+  }
+
+  /* Stats Card */
+  .stats-card {
+    @apply glass-panel p-6 rounded-xl relative overflow-hidden;
+  }
+
+  /* Match History Item */
+  .match-item {
+    @apply flex items-center p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors;
+  }
+  .match-item.victory {
+    @apply border-l-2 border-victory;
+  }
+  .match-item.defeat {
+    @apply border-l-2 border-defeat;
+  }
+
+  /* Tier Badge */
+  .tier-badge {
+    @apply px-2 py-0.5 rounded text-[10px] font-bold;
+  }
+  .tier-badge.s-plus {
+    @apply bg-victory/10 text-victory border border-victory/20;
+  }
+  .tier-badge.s {
+    @apply bg-blue-500/10 text-blue-400 border border-blue-500/20;
+  }
+  .tier-badge.a {
+    @apply bg-zinc-500/10 text-zinc-400 border border-zinc-500/20;
+  }
+
+  /* Filter Pill */
+  .filter-pill {
+    @apply px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors;
+  }
+  .filter-pill.active {
+    @apply bg-primary/10 text-primary border border-primary/20;
+  }
+  .filter-pill:not(.active) {
+    @apply bg-surface border border-white/10 text-zinc-400 hover:text-white hover:bg-white/5;
+  }
+
+  /* Synergy Card */
+  .synergy-card {
+    @apply glass-panel p-6 rounded-xl border border-white/5 flex items-center justify-between hover:border-primary/30 transition-colors;
+  }
+}
