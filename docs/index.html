@@ -302,8 +302,8 @@
         
         .hero-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(64px, 12vw, 140px);
-            line-height: 0.95;
+            font-size: clamp(64px, 12vw, 160px);
+            line-height: 0.9;
             letter-spacing: 2px;
             margin-bottom: 0;
             text-transform: uppercase;
@@ -324,12 +324,13 @@
         }
         
         .hero-subtitle {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.65;
-            max-width: 280px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            max-width: 320px;
             margin: 0;
             animation: hero-sub 0.8s ease-out 2.8s both;
+            font-weight: 400;
         }
         
         @keyframes hero-sub {
@@ -349,20 +350,33 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 18px 36px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 24px 48px;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
             border: none;
-            border-radius: 6px;
-            color: #000;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
             text-transform: uppercase;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 0 40px rgba(6, 182, 212, 0.4);
-            min-width: 200px;
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.2);
+            min-width: 260px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+            opacity: 0.5;
         }
         
         @keyframes hero-cta {
@@ -464,10 +478,11 @@
         }
         
         .scroll-text text {
-            fill: rgba(255, 255, 255, 0.5);
-            font-size: 11px;
-            letter-spacing: 4px;
+            fill: rgba(255, 255, 255, 0.8);
+            font-size: 10px;
+            letter-spacing: 5px;
             text-transform: uppercase;
+            font-weight: 700;
         }
         
         .scroll-arrow {
@@ -909,18 +924,15 @@
                 <span>AI-Powered TFT Companion</span>
             </div>
             <h1 class="hero-title">
-                MASTER TFT<br>
-                <span>WITH AI</span>
+                YOUR OWN STORY<br>
+                <span>IN TACTICSMASTER</span>
             </h1>
             <div class="hero-cta-row">
                 <a href="#download" class="hero-cta">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-                    </svg>
                     Try Now For Free
                 </a>
                 <p class="hero-subtitle">
-                    Get real-time composition recommendations, augment tier lists, and item optimization powered by machine learning.
+                    Adventure with AI by your side. Dominate other legends, and climb the ranks as you play.
                 </p>
             </div>
         </div>
