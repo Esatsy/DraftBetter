@@ -192,7 +192,7 @@
             left: 0;
             right: 0;
             z-index: 100;
-            padding: 20px 48px;
+            padding: 30px 100px; /* Aligned with hero content */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -282,9 +282,13 @@
         .hero-content {
             position: relative;
             z-index: 10;
-            padding: 0 100px;
+            padding: 0 100px; /* Aligned with nav */
             max-width: 600px;
-            margin-bottom: 140px;
+            margin-top: 100px; /* Push down to avoid header overlap */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
         }
         
         .hero-badge {
@@ -429,8 +433,8 @@
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 40px;
-            left: 100px;
+            bottom: 60px;
+            left: 100px; /* Aligned with nav and hero content */
             z-index: 10;
             width: 80px;
             height: 80px;
