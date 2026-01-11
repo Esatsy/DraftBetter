@@ -4,168 +4,228 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - TacticsMaster</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #06b6d4;
+            --primary-light: #22d3ee;
             --bg: #0a0a0f;
             --surface: #121214;
-            --border: rgba(255, 255, 255, 0.05);
-            --text: #e4e4e7;
-            --text-muted: #71717a;
+            --border: rgba(255, 255, 255, 0.06);
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Outfit', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.8;
+            min-height: 100vh;
+            line-height: 1.7;
         }
+        
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 0%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 48px 24px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
         }
+        
         header {
-            margin-bottom: 48px;
-            padding-bottom: 24px;
+            padding: 24px 0;
             border-bottom: 1px solid var(--border);
+            margin-bottom: 48px;
         }
-        .back-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 14px;
-            display: inline-flex;
+        
+        .logo {
+            display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 24px;
+            gap: 12px;
+            text-decoration: none;
         }
-        .back-link:hover { text-decoration: underline; }
-        h1 {
-            font-size: 36px;
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--bg);
+        }
+        
+        .logo-text {
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 8px;
+            background: linear-gradient(135deg, white, var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .updated {
+        
+        main {
+            padding-bottom: 80px;
+        }
+        
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, white, var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .last-updated {
             color: var(--text-muted);
             font-size: 14px;
+            margin-bottom: 48px;
         }
+        
         h2 {
             font-size: 24px;
             font-weight: 600;
-            margin: 32px 0 16px;
-            color: var(--primary);
+            margin-top: 48px;
+            margin-bottom: 16px;
+            color: var(--primary-light);
         }
-        p, ul, li {
+        
+        p {
             color: var(--text-muted);
             margin-bottom: 16px;
         }
-        ul { padding-left: 24px; }
-        li { margin-bottom: 8px; }
-        strong { color: var(--text); }
-        .highlight {
+        
+        ul {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 48px;
+            padding: 12px 24px;
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px 0;
+            border-radius: 10px;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .back-link:hover {
+            border-color: var(--primary);
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <a href="index.html" class="back-link">← Back to Home</a>
+    <div class="bg-gradient"></div>
+    
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">TM</div>
+                <span class="logo-text">TacticsMaster</span>
+            </a>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
             <h1>Privacy Policy</h1>
-            <p class="updated">Last updated: January 2024</p>
-        </header>
-        
-        <main>
-            <p>
-                This Privacy Policy describes how TacticsMaster ("we", "us", or "our") collects, uses, 
-                and protects your information when you use our desktop application.
-            </p>
+            <p class="last-updated">Last updated: January 2026</p>
             
-            <h2>Information We Collect</h2>
+            <p>TacticsMaster ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our application.</p>
             
-            <h3>Data from Riot Games API</h3>
-            <p>When you use TacticsMaster, we access the following data through the official Riot Games API:</p>
+            <h2>1. Information We Collect</h2>
+            <p>We collect information that you provide directly or that is automatically collected when using TacticsMaster:</p>
             <ul>
-                <li><strong>Summoner Information:</strong> Your summoner name, profile icon, and summoner level</li>
-                <li><strong>Ranked Data:</strong> Your current rank, LP, wins, and losses in TFT</li>
-                <li><strong>Match History:</strong> Your recent TFT matches, including compositions played, placement, and augments selected</li>
+                <li><strong>Riot Account Data:</strong> Your summoner name, TFT rank, match history, and gameplay statistics accessed via the Riot Games API</li>
+                <li><strong>Usage Data:</strong> How you interact with the application (features used, preferences)</li>
+                <li><strong>Device Information:</strong> Operating system version for compatibility purposes</li>
             </ul>
             
-            <div class="highlight">
-                <strong>Important:</strong> We only access data for the account currently logged into the TFT client. 
-                We do not access data from other players without their consent.
-            </div>
-            
-            <h2>How We Use Your Data</h2>
+            <h2>2. How We Use Your Information</h2>
+            <p>We use the collected information to:</p>
             <ul>
-                <li>Display your personal statistics within the application</li>
-                <li>Provide personalized composition and augment recommendations</li>
-                <li>Train machine learning models using aggregated, anonymized match data</li>
-                <li>Improve our recommendation algorithms</li>
+                <li>Provide personalized TFT recommendations and insights</li>
+                <li>Display your stats, match history, and performance analytics</li>
+                <li>Improve our AI models and recommendation accuracy</li>
+                <li>Fix bugs and enhance the application</li>
             </ul>
             
-            <h2>Data Storage</h2>
+            <h2>3. Data Storage</h2>
+            <p>Your data is stored locally on your device. We do not store your personal game data on external servers. AI model training uses anonymized, aggregated match data from public Riot API endpoints.</p>
+            
+            <h2>4. Third-Party Services</h2>
+            <p>We use the following third-party services:</p>
             <ul>
-                <li><strong>Local Storage Only:</strong> Your personal data is stored locally on your device</li>
-                <li><strong>No Cloud Storage:</strong> We do not upload or store your personal data on external servers</li>
-                <li><strong>Aggregated Data:</strong> Match data used for ML training is anonymized and contains no personally identifiable information</li>
+                <li><strong>Riot Games API:</strong> To fetch your TFT data (subject to <a href="https://www.riotgames.com/en/privacy-notice" target="_blank">Riot's Privacy Notice</a>)</li>
             </ul>
             
-            <h2>Data We Do NOT Collect</h2>
-            <ul>
-                <li>Your real name or email address</li>
-                <li>Payment or financial information</li>
-                <li>IP address or location data</li>
-                <li>Data from other players</li>
-                <li>Chat logs or private messages</li>
-            </ul>
+            <h2>5. Data Security</h2>
+            <p>We implement appropriate security measures to protect your information. Your Riot API credentials are never stored or transmitted through our servers.</p>
             
-            <h2>Third-Party Services</h2>
-            <p>
-                TacticsMaster uses the official Riot Games API to access game data. 
-                Your use of TacticsMaster is also subject to Riot Games' 
-                <a href="https://www.riotgames.com/en/privacy-notice" target="_blank" style="color: var(--primary);">Privacy Policy</a>.
-            </p>
-            
-            <h2>Data Retention</h2>
-            <p>
-                Personal data is stored locally on your device and persists until you uninstall the application 
-                or manually clear the app data. We do not retain any personal data on our servers.
-            </p>
-            
-            <h2>Your Rights</h2>
+            <h2>6. Your Rights</h2>
             <p>You have the right to:</p>
             <ul>
-                <li>Access your data by viewing it within the application</li>
-                <li>Delete your data by uninstalling the application</li>
-                <li>Opt out of data collection by not using the application</li>
+                <li>Access the data we have about you</li>
+                <li>Request deletion of your local data</li>
+                <li>Opt out of data collection by uninstalling the application</li>
             </ul>
             
-            <h2>Children's Privacy</h2>
-            <p>
-                TacticsMaster is not intended for children under 13 years of age. We do not knowingly 
-                collect personal information from children under 13.
-            </p>
+            <h2>7. Children's Privacy</h2>
+            <p>TacticsMaster is not intended for children under 13. We do not knowingly collect data from children under 13.</p>
             
-            <h2>Changes to This Policy</h2>
-            <p>
-                We may update this Privacy Policy from time to time. We will notify you of any changes 
-                by posting the new Privacy Policy on this page and updating the "Last updated" date.
-            </p>
+            <h2>8. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
             
-            <h2>Contact Us</h2>
-            <p>
-                If you have any questions about this Privacy Policy, please open an issue on our 
-                <a href="https://github.com/Esatsy/TacticsMaster" target="_blank" style="color: var(--primary);">GitHub repository</a>.
-            </p>
-        </main>
-    </div>
+            <h2>9. Contact Us</h2>
+            <p>If you have questions about this Privacy Policy, please contact us through our <a href="https://github.com/Esatsy/TacticsMaster" target="_blank">GitHub repository</a>.</p>
+            
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Home
+            </a>
+        </div>
+    </main>
 </body>
 </html>

@@ -4,177 +4,237 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - TacticsMaster</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #06b6d4;
+            --primary-light: #22d3ee;
             --bg: #0a0a0f;
             --surface: #121214;
-            --border: rgba(255, 255, 255, 0.05);
-            --text: #e4e4e7;
-            --text-muted: #71717a;
+            --border: rgba(255, 255, 255, 0.06);
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Outfit', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.8;
+            min-height: 100vh;
+            line-height: 1.7;
         }
+        
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 80% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 48px 24px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
         }
+        
         header {
-            margin-bottom: 48px;
-            padding-bottom: 24px;
+            padding: 24px 0;
             border-bottom: 1px solid var(--border);
+            margin-bottom: 48px;
         }
-        .back-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 14px;
-            display: inline-flex;
+        
+        .logo {
+            display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 24px;
+            gap: 12px;
+            text-decoration: none;
         }
-        .back-link:hover { text-decoration: underline; }
-        h1 {
-            font-size: 36px;
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--bg);
+        }
+        
+        .logo-text {
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 8px;
+            background: linear-gradient(135deg, white, var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .updated {
+        
+        main {
+            padding-bottom: 80px;
+        }
+        
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, white, var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .last-updated {
             color: var(--text-muted);
             font-size: 14px;
+            margin-bottom: 48px;
         }
+        
         h2 {
             font-size: 24px;
             font-weight: 600;
-            margin: 32px 0 16px;
-            color: var(--primary);
+            margin-top: 48px;
+            margin-bottom: 16px;
+            color: var(--primary-light);
         }
-        p, ul, li {
+        
+        p {
             color: var(--text-muted);
             margin-bottom: 16px;
         }
-        ul { padding-left: 24px; }
-        li { margin-bottom: 8px; }
-        strong { color: var(--text); }
-        .highlight {
+        
+        ul {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 48px;
+            padding: 12px 24px;
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px 0;
+            border-radius: 10px;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .back-link:hover {
+            border-color: var(--primary);
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <a href="index.html" class="back-link">← Back to Home</a>
+    <div class="bg-gradient"></div>
+    
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">TM</div>
+                <span class="logo-text">TacticsMaster</span>
+            </a>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
             <h1>Terms of Service</h1>
-            <p class="updated">Last updated: January 2024</p>
-        </header>
-        
-        <main>
-            <p>
-                By using TacticsMaster, you agree to be bound by these Terms of Service. 
-                If you do not agree to these terms, please do not use the application.
-            </p>
+            <p class="last-updated">Last updated: January 2026</p>
             
-            <h2>1. Description of Service</h2>
-            <p>
-                TacticsMaster is a free desktop companion application for Teamfight Tactics (TFT) 
-                that provides composition recommendations, augment tier lists, item optimization, 
-                and personal statistics tracking.
-            </p>
+            <p>Welcome to TacticsMaster. By using our application, you agree to these Terms of Service. Please read them carefully.</p>
             
-            <h2>2. Eligibility</h2>
-            <p>
-                You must have a valid Riot Games account and be in compliance with Riot Games' 
-                Terms of Service to use TacticsMaster. You must be at least 13 years old to use this application.
-            </p>
+            <h2>1. Acceptance of Terms</h2>
+            <p>By downloading, installing, or using TacticsMaster, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms, do not use the application.</p>
             
-            <h2>3. Acceptable Use</h2>
-            <p>You agree to use TacticsMaster only for lawful purposes. You may NOT:</p>
+            <h2>2. Description of Service</h2>
+            <p>TacticsMaster is a companion application for Teamfight Tactics that provides:</p>
             <ul>
-                <li>Use the application to gain unfair advantages that violate Riot Games' Terms of Service</li>
-                <li>Attempt to reverse engineer, decompile, or modify the application</li>
-                <li>Use the application to collect data about other players without their consent</li>
-                <li>Redistribute or sell the application or any of its components</li>
-                <li>Use automated systems to interact with the application</li>
+                <li>Composition recommendations and tier lists</li>
+                <li>Augment and item suggestions</li>
+                <li>AI-powered gameplay predictions</li>
+                <li>Personal statistics and performance tracking</li>
             </ul>
             
-            <h2>4. Riot Games API</h2>
-            <p>
-                TacticsMaster uses the official Riot Games API to access game data. Your use of 
-                TacticsMaster is subject to Riot Games' API Terms of Service and Developer Policies.
-            </p>
+            <h2>3. Riot Games Compliance</h2>
+            <p>TacticsMaster uses the official Riot Games API in compliance with their policies. By using TacticsMaster, you also agree to comply with:</p>
+            <ul>
+                <li><a href="https://www.riotgames.com/en/terms-of-service" target="_blank">Riot Games Terms of Service</a></li>
+                <li><a href="https://developer.riotgames.com/policies/general" target="_blank">Riot Games Developer Policies</a></li>
+            </ul>
             
-            <div class="highlight">
-                <strong>Disclaimer:</strong> TacticsMaster isn't endorsed by Riot Games and doesn't 
-                reflect the views or opinions of Riot Games or anyone officially involved in producing 
-                or managing Riot Games properties.
-            </div>
+            <h2>4. User Responsibilities</h2>
+            <p>You agree to:</p>
+            <ul>
+                <li>Use TacticsMaster only for personal, non-commercial purposes</li>
+                <li>Not attempt to reverse engineer or modify the application</li>
+                <li>Not use the application to violate Riot Games' Terms of Service</li>
+                <li>Not share your Riot API credentials with anyone</li>
+            </ul>
             
             <h2>5. Intellectual Property</h2>
-            <p>
-                Riot Games, Teamfight Tactics, and all associated properties are trademarks or 
-                registered trademarks of Riot Games, Inc. Game assets displayed in TacticsMaster 
-                are used in accordance with Riot Games' Legal Jibber Jabber.
-            </p>
+            <p>TacticsMaster and its original content are protected by intellectual property laws. Teamfight Tactics, League of Legends, and all associated properties are trademarks of Riot Games, Inc.</p>
             
-            <h2>6. No Warranties</h2>
-            <p>
-                TacticsMaster is provided "as is" without any warranties of any kind, either express 
-                or implied. We do not guarantee that:
-            </p>
+            <h2>6. Disclaimer of Warranties</h2>
+            <p>TacticsMaster is provided "as is" without warranties of any kind. We do not guarantee:</p>
             <ul>
-                <li>The application will be error-free or uninterrupted</li>
-                <li>Recommendations will guarantee improved game performance</li>
-                <li>The application will be compatible with all systems</li>
-                <li>Data displayed will be 100% accurate at all times</li>
+                <li>Accuracy of recommendations or predictions</li>
+                <li>Improvement in your TFT rank or performance</li>
+                <li>Uninterrupted or error-free operation</li>
+                <li>Compatibility with future game updates</li>
             </ul>
             
             <h2>7. Limitation of Liability</h2>
-            <p>
-                To the maximum extent permitted by law, TacticsMaster and its developers shall not 
-                be liable for any indirect, incidental, special, consequential, or punitive damages 
-                arising out of or relating to your use of the application.
-            </p>
+            <p>TacticsMaster and its developers shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the application.</p>
             
-            <h2>8. Updates and Changes</h2>
-            <p>
-                We reserve the right to modify, suspend, or discontinue TacticsMaster at any time 
-                without notice. We may also update these Terms of Service from time to time. 
-                Continued use of the application after changes constitutes acceptance of the new terms.
-            </p>
+            <h2>8. Third-Party Disclaimer</h2>
+            <p>TacticsMaster isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties.</p>
             
-            <h2>9. Termination</h2>
-            <p>
-                We reserve the right to terminate or suspend your access to TacticsMaster at any 
-                time, without notice, for conduct that we believe violates these Terms of Service 
-                or is harmful to other users or our services.
-            </p>
+            <h2>9. Modifications to Service</h2>
+            <p>We reserve the right to modify, suspend, or discontinue TacticsMaster at any time without notice. We may also update these Terms of Service periodically.</p>
             
-            <h2>10. Governing Law</h2>
-            <p>
-                These Terms of Service shall be governed by and construed in accordance with 
-                applicable laws, without regard to conflict of law principles.
-            </p>
+            <h2>10. Open Source</h2>
+            <p>TacticsMaster is open source software. The source code is available on our <a href="https://github.com/Esatsy/TacticsMaster" target="_blank">GitHub repository</a> under the MIT License.</p>
             
             <h2>11. Contact</h2>
-            <p>
-                If you have any questions about these Terms of Service, please open an issue on our 
-                <a href="https://github.com/Esatsy/TacticsMaster" target="_blank" style="color: var(--primary);">GitHub repository</a>.
-            </p>
-        </main>
-    </div>
+            <p>For questions about these Terms of Service, please contact us through our <a href="https://github.com/Esatsy/TacticsMaster" target="_blank">GitHub repository</a>.</p>
+            
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Home
+            </a>
+        </div>
+    </main>
 </body>
 </html>
