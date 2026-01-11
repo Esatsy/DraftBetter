@@ -4,13 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TacticsMaster - AI-Powered TFT Companion</title>
-    <meta name="description" content="TacticsMaster is your AI-powered Teamfight Tactics companion. Get composition recommendations, augment tier lists, and item optimization to climb the ranked ladder.">
-    <meta name="keywords" content="TFT, Teamfight Tactics, companion app, AI, machine learning, meta, compositions, augments, items">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="TacticsMaster - AI-Powered TFT Companion">
-    <meta property="og:description" content="Climb the TFT ranked ladder with machine learning insights.">
-    <meta property="og:type" content="website">
+    <meta name="description" content="TacticsMaster is your AI-powered Teamfight Tactics companion.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
@@ -19,6 +13,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     
     <style>
         :root {
@@ -45,6 +42,92 @@
             background: var(--bg);
             color: var(--text);
             overflow-x: hidden;
+            font-size: 17px;
+        }
+        
+        /* ==================== CLIP INTRO ANIMATION ==================== */
+        .clip-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: clip-out 1s ease-in-out 2s both;
+        }
+        
+        .clip-intro-logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            animation: intro-pulse 0.8s ease-out 0.3s both;
+        }
+        
+        .clip-intro-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            color: #000;
+            animation: intro-icon 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+        }
+        
+        .clip-intro-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            letter-spacing: 4px;
+            color: white;
+            animation: intro-text 0.8s ease-out 0.5s both;
+        }
+        
+        @keyframes intro-icon {
+            0% { transform: scale(0.5) rotate(-10deg); filter: blur(10px); }
+            100% { transform: scale(1) rotate(0deg); filter: blur(0); }
+        }
+        
+        @keyframes intro-text {
+            0% { transform: translateX(-30px); filter: blur(10px); clip-path: inset(0 100% 0 0); }
+            100% { transform: translateX(0); filter: blur(0); clip-path: inset(0 0 0 0); }
+        }
+        
+        @keyframes intro-pulse {
+            0% { transform: scale(0.9); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes clip-out {
+            0% { clip-path: inset(0 0 0 0); }
+            100% { clip-path: inset(0 0 100% 0); pointer-events: none; }
+        }
+        
+        /* ==================== PARALLAX BACKGROUND ==================== */
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            z-index: 0;
+            will-change: transform;
+        }
+        
+        .unicorn-container {
+            position: absolute;
+            top: -10%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: saturate(0.7) brightness(0.9);
         }
         
         /* ==================== HERO SECTION ==================== */
@@ -58,27 +141,6 @@
             align-items: center;
         }
         
-        /* Animated Background Container */
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-        
-        /* UnicornStudio Animation */
-        .unicorn-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            filter: saturate(0.7) brightness(0.9);
-        }
-        
-        /* Gradient Overlay */
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -86,12 +148,12 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%),
-                linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.8) 100%);
+                linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.3) 100%),
+                linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.9) 100%);
             z-index: 1;
         }
         
-        /* Animated Particles */
+        /* Floating Particles */
         .particles-container {
             position: absolute;
             top: 0;
@@ -108,15 +170,13 @@
             height: 3px;
             background: var(--primary);
             border-radius: 50%;
-            opacity: 0;
-            animation: float-particle 8s infinite;
+            animation: float-particle 8s infinite both;
         }
         
         @keyframes float-particle {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0.3; }
         }
         
         /* Navigation */
@@ -131,10 +191,16 @@
             justify-content: space-between;
             align-items: center;
             transition: all 0.3s ease;
+            animation: nav-slide 0.8s ease-out 2.2s both;
+        }
+        
+        @keyframes nav-slide {
+            0% { transform: translateY(-100%); filter: blur(10px); }
+            100% { transform: translateY(0); filter: blur(0); }
         }
         
         .nav.scrolled {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
             padding: 16px 48px;
         }
@@ -147,22 +213,22 @@
         }
         
         .nav-logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 18px;
+            font-size: 20px;
             color: #000;
             font-weight: bold;
         }
         
         .nav-logo-text {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 24px;
+            font-size: 26px;
             letter-spacing: 2px;
             color: white;
         }
@@ -176,7 +242,7 @@
         .nav-links a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 500;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -188,13 +254,13 @@
         }
         
         .nav-btn {
-            padding: 12px 28px;
+            padding: 14px 32px;
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 6px;
+            border-radius: 8px;
             color: white;
-            font-size: 13px;
-            font-weight: 500;
+            font-size: 14px;
+            font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
@@ -211,16 +277,41 @@
             position: relative;
             z-index: 10;
             padding: 0 48px;
-            max-width: 700px;
+            max-width: 750px;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 100px;
+            font-size: 14px;
+            color: var(--primary-light);
+            margin-bottom: 28px;
+            animation: hero-fade 0.8s ease-out 2.3s both;
+        }
+        
+        @keyframes hero-fade {
+            0% { transform: translateY(30px); filter: blur(10px); }
+            100% { transform: translateY(0); filter: blur(0); }
         }
         
         .hero-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(60px, 12vw, 140px);
-            line-height: 0.95;
-            letter-spacing: 2px;
-            margin-bottom: 24px;
+            font-size: clamp(72px, 14vw, 160px);
+            line-height: 0.92;
+            letter-spacing: 3px;
+            margin-bottom: 28px;
             text-transform: uppercase;
+            animation: hero-title 1s ease-out 2.5s both;
+        }
+        
+        @keyframes hero-title {
+            0% { transform: translateY(60px); filter: blur(20px); clip-path: inset(100% 0 0 0); }
+            100% { transform: translateY(0); filter: blur(0); clip-path: inset(0 0 0 0); }
         }
         
         .hero-title span {
@@ -232,36 +323,47 @@
         }
         
         .hero-subtitle {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.7;
-            max-width: 400px;
-            margin-bottom: 40px;
+            font-size: 19px;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.75;
+            max-width: 450px;
+            margin-bottom: 44px;
+            animation: hero-sub 0.8s ease-out 2.8s both;
         }
         
-        /* CTA Button */
+        @keyframes hero-sub {
+            0% { transform: translateY(30px); filter: blur(10px); }
+            100% { transform: translateY(0); filter: blur(0); }
+        }
+        
         .hero-cta {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 18px 36px;
+            gap: 14px;
+            padding: 20px 42px;
             background: var(--primary);
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             color: #000;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 0 40px rgba(6, 182, 212, 0.4);
+            box-shadow: 0 0 50px rgba(6, 182, 212, 0.5);
+            animation: hero-cta 0.8s ease-out 3s both;
+        }
+        
+        @keyframes hero-cta {
+            0% { transform: translateY(30px) scale(0.9); filter: blur(10px); }
+            100% { transform: translateY(0) scale(1); filter: blur(0); }
         }
         
         .hero-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 60px rgba(6, 182, 212, 0.6);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 80px rgba(6, 182, 212, 0.7);
         }
         
         /* Download Buttons */
@@ -272,29 +374,35 @@
             z-index: 10;
             display: flex;
             gap: 16px;
+            animation: download-fade 0.8s ease-out 3.2s both;
+        }
+        
+        @keyframes download-fade {
+            0% { transform: translateY(30px); filter: blur(10px); }
+            100% { transform: translateY(0); filter: blur(0); }
         }
         
         .store-btn {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            gap: 12px;
+            padding: 14px 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
             color: white;
             text-decoration: none;
             transition: all 0.3s;
         }
         
         .store-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
         
-        .store-btn svg {
-            width: 24px;
-            height: 24px;
+        .store-btn iconify-icon {
+            font-size: 28px;
         }
         
         .store-btn-text {
@@ -304,12 +412,12 @@
         }
         
         .store-btn-text small {
-            font-size: 10px;
+            font-size: 11px;
             opacity: 0.7;
         }
         
         .store-btn-text strong {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
         }
         
@@ -319,15 +427,26 @@
             bottom: 48px;
             left: 48px;
             z-index: 10;
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
+            animation: scroll-fade 0.8s ease-out 3.4s both;
+        }
+        
+        @keyframes scroll-fade {
+            0% { transform: scale(0.8); filter: blur(10px); }
+            100% { transform: scale(1); filter: blur(0); }
         }
         
         .scroll-text {
             position: absolute;
             width: 100%;
             height: 100%;
-            animation: rotate-text 10s linear infinite;
+            animation: rotate-text 12s linear infinite both;
+        }
+        
+        @keyframes rotate-text {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .scroll-text svg {
@@ -337,14 +456,9 @@
         
         .scroll-text text {
             fill: rgba(255, 255, 255, 0.5);
-            font-size: 12px;
-            letter-spacing: 3px;
+            font-size: 11px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-        }
-        
-        @keyframes rotate-text {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
         
         .scroll-arrow {
@@ -352,29 +466,26 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
         .scroll-arrow svg {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             stroke: rgba(255, 255, 255, 0.7);
-            animation: bounce 2s ease-in-out infinite;
+            animation: bounce 2s ease-in-out infinite both;
         }
         
         @keyframes bounce {
-            0%, 100% { transform: translateY(-3px); }
-            50% { transform: translateY(3px); }
+            0%, 100% { transform: translateY(-4px); }
+            50% { transform: translateY(4px); }
         }
         
-        /* ==================== FEATURES SECTION ==================== */
+        /* ==================== FEATURES CAROUSEL ==================== */
         .features {
-            padding: 120px 48px;
+            padding: 140px 48px;
             background: linear-gradient(180deg, #000 0%, #0a0a0f 100%);
+            position: relative;
+            overflow: hidden;
         }
         
         .section-header {
@@ -384,92 +495,176 @@
         
         .section-header h2 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(40px, 6vw, 64px);
-            letter-spacing: 2px;
-            margin-bottom: 16px;
+            font-size: clamp(52px, 8vw, 80px);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
         }
         
         .section-header p {
             color: var(--text-muted);
-            font-size: 18px;
+            font-size: 20px;
         }
         
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 24px;
-            max-width: 1200px;
+        /* Carousel Container */
+        .carousel-wrapper {
+            position: relative;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 60px;
         }
         
+        .carousel-container {
+            overflow: hidden;
+            mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+        }
+        
+        .carousel-track {
+            display: flex;
+            gap: 32px;
+            animation: marquee 30s linear infinite both;
+            width: max-content;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+        
+        /* Feature Card with Flashlight */
         .feature-card {
+            flex-shrink: 0;
+            width: 380px;
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 40px;
-            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 44px;
             position: relative;
             overflow: hidden;
+            transition: all 0.4s ease;
         }
         
         .feature-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            top: var(--mouse-y, 50%);
+            left: var(--mouse-x, 50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1px;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(6, 182, 212, 0.4),
+                transparent 40%
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .feature-card:hover::before,
+        .feature-card:hover::after {
+            opacity: 1;
         }
         
         .feature-card:hover {
             background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(6, 182, 212, 0.2);
             transform: translateY(-8px);
         }
         
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-        
         .feature-icon {
-            width: 56px;
-            height: 56px;
+            width: 64px;
+            height: 64px;
             background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(139, 92, 246, 0.1));
             border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 14px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
-            margin-bottom: 24px;
+            font-size: 30px;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
         }
         
         .feature-card h3 {
-            font-size: 22px;
+            font-size: 26px;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
         }
         
         .feature-card p {
             color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.7;
+            font-size: 17px;
+            line-height: 1.75;
+            position: relative;
+            z-index: 1;
         }
+        
+        /* Carousel Navigation */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 20;
+        }
+        
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+        }
+        
+        .carousel-nav svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+        
+        .carousel-nav.prev { left: 0; }
+        .carousel-nav.next { right: 0; }
         
         /* ==================== STATS SECTION ==================== */
         .stats {
-            padding: 80px 48px;
+            padding: 100px 48px;
             background: #0a0a0f;
         }
         
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 48px;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 56px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         
@@ -479,7 +674,7 @@
         
         .stat-number {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 64px;
+            font-size: 76px;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -488,34 +683,34 @@
         
         .stat-label {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 16px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
         
         /* ==================== CTA SECTION ==================== */
         .cta {
-            padding: 120px 48px;
+            padding: 140px 48px;
             background: linear-gradient(180deg, #0a0a0f 0%, #000 100%);
             text-align: center;
         }
         
         .cta h2 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(40px, 6vw, 72px);
-            letter-spacing: 2px;
-            margin-bottom: 24px;
+            font-size: clamp(52px, 8vw, 88px);
+            letter-spacing: 3px;
+            margin-bottom: 28px;
         }
         
         .cta p {
             color: var(--text-muted);
-            font-size: 18px;
-            margin-bottom: 48px;
+            font-size: 20px;
+            margin-bottom: 56px;
         }
         
         .cta-buttons {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -523,37 +718,37 @@
         .btn-primary {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 18px 40px;
+            gap: 12px;
+            padding: 20px 48px;
             background: var(--primary);
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             color: #000;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
             text-decoration: none;
             transition: all 0.3s;
-            box-shadow: 0 0 40px rgba(6, 182, 212, 0.3);
+            box-shadow: 0 0 50px rgba(6, 182, 212, 0.4);
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 60px rgba(6, 182, 212, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 0 70px rgba(6, 182, 212, 0.6);
         }
         
         .btn-secondary {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 18px 40px;
+            gap: 12px;
+            padding: 20px 48px;
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            border-radius: 10px;
             color: white;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
             text-decoration: none;
@@ -567,7 +762,7 @@
         
         /* ==================== FOOTER ==================== */
         footer {
-            padding: 48px;
+            padding: 56px 48px;
             background: #000;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -578,18 +773,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 24px;
+            gap: 28px;
         }
         
         .footer-links {
             display: flex;
-            gap: 32px;
+            gap: 40px;
         }
         
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 15px;
             transition: color 0.2s;
         }
         
@@ -600,72 +795,76 @@
         .footer-text {
             text-align: center;
             color: rgba(255, 255, 255, 0.4);
-            font-size: 12px;
-            line-height: 1.8;
-            max-width: 600px;
+            font-size: 13px;
+            line-height: 1.9;
+            max-width: 650px;
         }
+        
+        /* ==================== REVEAL ANIMATIONS ==================== */
+        .reveal {
+            transform: translateY(50px);
+            filter: blur(10px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .reveal.visible {
+            transform: translateY(0);
+            filter: blur(0);
+        }
+        
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
         
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 768px) {
-            .nav {
-                padding: 16px 24px;
-            }
+            body { font-size: 16px; }
             
-            .nav-links {
-                display: none;
-            }
+            .nav { padding: 16px 24px; }
+            .nav-links { display: none; }
             
-            .hero-content {
-                padding: 0 24px;
-            }
+            .hero-content { padding: 0 24px; }
+            .hero-title { font-size: clamp(56px, 14vw, 100px); }
+            .hero-subtitle { max-width: 100%; font-size: 17px; }
             
-            .hero-subtitle {
-                max-width: 100%;
-            }
-            
-            .download-buttons {
-                display: none;
-            }
+            .download-buttons { display: none; }
             
             .scroll-indicator {
                 left: 50%;
                 transform: translateX(-50%);
             }
             
-            .features, .stats, .cta {
-                padding: 80px 24px;
-            }
+            .features, .stats, .cta { padding: 80px 24px; }
             
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
+            .carousel-wrapper { padding: 0 20px; }
+            .carousel-nav { display: none; }
+            .feature-card { width: 320px; padding: 32px; }
             
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+            .section-header h2 { font-size: clamp(40px, 8vw, 60px); }
             
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-        }
-        
-        /* Reveal Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .btn-primary, .btn-secondary { width: 100%; max-width: 320px; justify-content: center; }
+            
+            .clip-intro-icon { width: 60px; height: 60px; font-size: 28px; }
+            .clip-intro-text { font-size: 32px; }
         }
     </style>
 </head>
 <body>
+    <!-- Clip Intro Animation -->
+    <div class="clip-intro">
+        <div class="clip-intro-logo">
+            <div class="clip-intro-icon">TM</div>
+            <span class="clip-intro-text">TACTICSMASTER</span>
+        </div>
+    </div>
+    
+    <!-- Parallax Background -->
+    <div class="parallax-bg" id="parallaxBg">
+        <div class="unicorn-container" data-us-project="vTTCp5g4cVl9nwjlT56Z"></div>
+    </div>
+    
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <a href="#" class="nav-logo">
@@ -681,17 +880,14 @@
     
     <!-- Hero Section -->
     <section class="hero">
-        <!-- Animated Background -->
-        <div class="hero-bg">
-            <div class="unicorn-container" data-us-project="vTTCp5g4cVl9nwjlT56Z"></div>
-        </div>
         <div class="hero-overlay"></div>
-        
-        <!-- Floating Particles -->
         <div class="particles-container" id="particles"></div>
         
-        <!-- Hero Content -->
         <div class="hero-content">
+            <div class="hero-badge">
+                <span>✨</span>
+                <span>AI-Powered TFT Companion</span>
+            </div>
             <h1 class="hero-title">
                 DOMINATE TFT<br>
                 <span>WITH AI POWER</span>
@@ -703,21 +899,26 @@
             </p>
             <a href="#download" class="hero-cta">
                 Try Now For Free
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                 </svg>
             </a>
         </div>
         
-        <!-- Store Buttons -->
+        <!-- Store Buttons with Iconify -->
         <div class="download-buttons">
             <a href="#" class="store-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                </svg>
+                <iconify-icon icon="simple-icons:windows" style="color: white;"></iconify-icon>
                 <div class="store-btn-text">
-                    <small>Download on</small>
+                    <small>Download for</small>
                     <strong>Windows</strong>
+                </div>
+            </a>
+            <a href="#" class="store-btn">
+                <iconify-icon icon="simple-icons:apple" style="color: white;"></iconify-icon>
+                <div class="store-btn-text">
+                    <small>Download for</small>
+                    <strong>macOS</strong>
                 </div>
             </a>
         </div>
@@ -744,62 +945,111 @@
         </div>
     </section>
     
-    <!-- Features Section -->
+    <!-- Features Carousel -->
     <section class="features" id="features">
-        <div class="section-header reveal">
-            <h2>EVERYTHING YOU NEED TO CLIMB</h2>
-            <p>Powerful features designed to give you the competitive edge</p>
+        <div class="section-header">
+            <h2 class="reveal">EVERYTHING YOU NEED TO CLIMB</h2>
+            <p class="reveal reveal-delay-1">Powerful features designed to give you the competitive edge</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card reveal">
-                <div class="feature-icon">👑</div>
-                <h3>Meta Compositions</h3>
-                <p>Real-time tier lists updated with every patch. Know which comps are dominating high-elo lobbies before anyone else.</p>
+        
+        <div class="carousel-wrapper">
+            <button class="carousel-nav prev" onclick="scrollCarousel(-1)">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Cards duplicated for infinite loop -->
+                    <div class="feature-card">
+                        <div class="feature-icon">👑</div>
+                        <h3>Meta Compositions</h3>
+                        <p>Real-time tier lists updated with every patch. Know which comps are dominating high-elo lobbies.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✨</div>
+                        <h3>Augment Advisor</h3>
+                        <p>Stage-specific augment recommendations based on your current board state.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚔️</div>
+                        <h3>Item Optimizer</h3>
+                        <p>Best-in-slot item recommendations for every carry. Know exactly what to slam.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI Predictions</h3>
+                        <p>Machine learning model trained on current patch high-elo matches.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Personal Stats</h3>
+                        <p>Track your performance, favorite comps, and augment win rates.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Live Sync</h3>
+                        <p>Automatically syncs with the TFT client. Get recommendations as you play.</p>
+                    </div>
+                    <!-- Duplicate for infinite scroll -->
+                    <div class="feature-card">
+                        <div class="feature-icon">👑</div>
+                        <h3>Meta Compositions</h3>
+                        <p>Real-time tier lists updated with every patch. Know which comps are dominating high-elo lobbies.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✨</div>
+                        <h3>Augment Advisor</h3>
+                        <p>Stage-specific augment recommendations based on your current board state.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚔️</div>
+                        <h3>Item Optimizer</h3>
+                        <p>Best-in-slot item recommendations for every carry. Know exactly what to slam.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI Predictions</h3>
+                        <p>Machine learning model trained on current patch high-elo matches.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Personal Stats</h3>
+                        <p>Track your performance, favorite comps, and augment win rates.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Live Sync</h3>
+                        <p>Automatically syncs with the TFT client. Get recommendations as you play.</p>
+                    </div>
+                </div>
             </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">✨</div>
-                <h3>Augment Advisor</h3>
-                <p>Stage-specific augment recommendations based on your current board state. Never miss the perfect augment again.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">⚔️</div>
-                <h3>Item Optimizer</h3>
-                <p>Best-in-slot item recommendations for every carry. Know exactly what to slam and when.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">🤖</div>
-                <h3>AI Predictions</h3>
-                <p>Machine learning model trained on current patch high-elo matches. Get win probability predictions.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">📊</div>
-                <h3>Personal Stats</h3>
-                <p>Track your performance, favorite comps, and augment win rates. Identify your strengths.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">🔄</div>
-                <h3>Live Sync</h3>
-                <p>Automatically syncs with the TFT client. Get recommendations as you play without alt-tabbing.</p>
-            </div>
+            
+            <button class="carousel-nav next" onclick="scrollCarousel(1)">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
         </div>
     </section>
     
     <!-- Stats Section -->
     <section class="stats">
-        <div class="stats-grid reveal">
-            <div class="stat-item">
+        <div class="stats-grid">
+            <div class="stat-item reveal">
                 <div class="stat-number">100K+</div>
                 <div class="stat-label">Matches Analyzed</div>
             </div>
-            <div class="stat-item">
+            <div class="stat-item reveal reveal-delay-1">
                 <div class="stat-number">GM+</div>
                 <div class="stat-label">Data Source</div>
             </div>
-            <div class="stat-item">
+            <div class="stat-item reveal reveal-delay-2">
                 <div class="stat-number">Real-time</div>
                 <div class="stat-label">Updates</div>
             </div>
-            <div class="stat-item">
+            <div class="stat-item reveal reveal-delay-3">
                 <div class="stat-number">Free</div>
                 <div class="stat-label">Forever</div>
             </div>
@@ -809,10 +1059,10 @@
     <!-- CTA Section -->
     <section class="cta" id="download">
         <h2 class="reveal">READY TO CLIMB?</h2>
-        <p class="reveal">Join the community and start winning more games today.</p>
-        <div class="cta-buttons reveal">
+        <p class="reveal reveal-delay-1">Join the community and start winning more games today.</p>
+        <div class="cta-buttons reveal reveal-delay-2">
             <a href="#" class="btn-primary">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                 </svg>
                 Download Now
@@ -858,7 +1108,7 @@
         // Generate Particles
         function createParticles() {
             const container = document.getElementById('particles');
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 25; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
@@ -871,6 +1121,13 @@
         }
         createParticles();
         
+        // Parallax Scrolling
+        const parallaxBg = document.getElementById('parallaxBg');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            parallaxBg.style.transform = `translateY(${scrolled * 0.3}px)`;
+        });
+        
         // Navigation scroll effect
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
@@ -880,6 +1137,35 @@
                 nav.classList.remove('scrolled');
             }
         });
+        
+        // Flashlight effect on cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', x + 'px');
+                card.style.setProperty('--mouse-y', y + 'px');
+            });
+        });
+        
+        // Carousel scroll function
+        function scrollCarousel(direction) {
+            const track = document.getElementById('carouselTrack');
+            const cardWidth = 380 + 32; // card width + gap
+            track.style.animation = 'none';
+            track.offsetHeight; // trigger reflow
+            const currentTransform = getComputedStyle(track).transform;
+            let currentX = 0;
+            if (currentTransform !== 'none') {
+                const matrix = new DOMMatrix(currentTransform);
+                currentX = matrix.m41;
+            }
+            track.style.transform = `translateX(${currentX + (direction * -cardWidth)}px)`;
+            setTimeout(() => {
+                track.style.animation = 'marquee 30s linear infinite both';
+            }, 500);
+        }
         
         // Reveal on scroll
         const revealElements = document.querySelectorAll('.reveal');
